@@ -52,9 +52,10 @@ app.post("/api/books", (req, res) => {
   let data = req.body;
   let newBook = new Book(data.author, data.title, data.yearPublished);
   books.push(newBook);
+  res.status(201);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({id: newBook.id, author: newBook.author, title: newBook.title, yearPublished: newBook.yearPublished}));
-  res.status(201).send();
+  res.send();
 });
 
 // Done
