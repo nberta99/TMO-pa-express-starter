@@ -29,7 +29,7 @@ function compare(a, b) {
 }
 
 let id = 1;
-let books = []; //[new Book("Suzanne Collins", "The Hunger Games", 2009), new Book("Jeff Kinney", "Diary of a Wimpy Kid", 2005), new Book("George Orwell", "1984", 1949)];
+let books = []; // [new Book("Suzanne Collins", "The Hunger Games", 2009), new Book("Jeff Kinney", "Diary of a Wimpy Kid", 2005), new Book("George Orwell", "1984", 1949)];
 
 // app.get("/", (req, res) => {
 //   res.status(200).send("Hello, world!");
@@ -43,7 +43,8 @@ let books = []; //[new Book("Suzanne Collins", "The Hunger Games", 2009), new Bo
 app.get("/api/books", (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   let sortedBooks = books.sort(compare);
-  res.end(JSON.stringify({books: sortedBooks}));
+  let filteredBooks = sortedBooks.filter((v, i, a)=>a.findIndex(v2=>(v2.title===v.title))===i)
+  res.end(JSON.stringify({books: filteredBooks}));
   res.status(200).send();
 });
 
